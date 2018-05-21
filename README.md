@@ -1,11 +1,11 @@
 # MundoMarvel-Proyecto-final-LM-
 
 
-**Nombre del proyecto:
+**Nombre del proyecto:**
 
 MundoMarvel
 
-# Objetivos, descripción y funcionalidad del proyecto:
+**Objetivos, descripción y funcionalidad del proyecto:**
 
 Busca cualquier información sobre el universo Marvel, ya sea personajes, comics, eventos importantes que aparecen en los comics, creadores...
 
@@ -15,31 +15,33 @@ Una opción ha considerar(si da tiempo y se puede hacer) es hacer busquedas cruz
 
 -Nombre del comic en cuestión, año de publicación, personajes que intervienen, edades de los personajes, relaciones entre personajes, si alguno muere o no...
 
-# URL del repositorio GitHub:
+**URL del repositorio GitHub:**
 
 https://github.com/davidsantos777/MundoMarvel-Proyecto-final-LM-/
 
-# URL de la página web:
+**URL de la página web:**
 
-# ¿Cuántas API web vas a usar en el proyecto?:
+**¿Cuántas API web vas a usar en el proyecto?:**
 
 API de Marvel
 
-# URL de la API(s) utilizada(s):
+**URL de la API(s) utilizada(s):**
 
 https://developer.marvel.com/
 
-# Lenguaje(s) de marcas que utiliza(n) la(s) API:
+**Lenguaje(s) de marcas que utiliza(n) la(s) API:**
 
 JSON
         
-# ¿Qué tipo de autentificación tiene(n) la(s) API utilizada(s)?:
+**¿Qué tipo de autentificación tiene(n) la(s) API utilizada(s)?:**
 
 API key
         
-# ¿Qué métodos vas a usar en las llamada a la API?, es decir, ¿vas a consumir información del servicio web (métodos GET)?, o también, ¿vas a interactuar con el servicio web (métodos POST, PUT, DELETE,...)?:
+**¿Qué métodos vas a usar en las llamada a la API?, es decir, ¿vas a consumir información del servicio web (métodos GET)?, o también, ¿vas a interactuar con el servicio web (métodos POST, PUT, DELETE,...)?:**
 
-# ¿Cuantas cosas hace la aplicación?, podemos pensar cuantos @route va a tener nuestro programa Flask:
+GET
+
+**¿Cuantas cosas hace la aplicación?, podemos pensar cuantos @route va a tener nuestro programa Flask:**
 
 Buscar información sobre personajes.
 
@@ -53,10 +55,10 @@ Buscar información sobre los creadores relacionados con cada comic en cuestión
 
 Buscar información sobre series de publicación.
 
-# ¿Vas a hacer una página web válida y con hoja de estilo?
+**¿Vas a hacer una página web válida y con hoja de estilo?**
 
 Si
 
-# Comenta cualquier cosa que crees que puedes hacerte conseguir un 10 en el proyecto:
+**Comenta cualquier cosa que crees que puedes hacerte conseguir un 10 en el proyecto:**
 
 Añadir no solo información sobre los comics, sino también sobre el universo cinematográfico de marvel (UCM) y sobre sus series de televisión (Si da tiempo. Tendría que investigar si existen APIs sobre eso).
