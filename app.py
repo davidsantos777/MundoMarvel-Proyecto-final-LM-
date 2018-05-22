@@ -24,16 +24,17 @@ def inicio():
 
 @app.route('/busqueda', methods = ["get", "post"])
 def busqueda():
-  lista = []
   if request.method == "GET":
     return render_template('index.html')
   else:
-    nombre = int(raw_input("Dime el titulo de un comic: "))
+    nombre = raw_input("Dime el titulo de un comic: "))
     payload = {'apikey': public,'ts': ts,'hash': hash,'title': nombre}
     r = requests.get(base + 'comics', params= payload)
     if r.status_code == 200:
       results = r.json()
-      lista.append(results)
+      lista = []
+      for i in results['data']['results']:
+        lista.append({'Id': i["id"], 'Titulo': i['title'], 'Sinopsis': i['description']})
       return render_template('index.html', datos = lista)
 
 
