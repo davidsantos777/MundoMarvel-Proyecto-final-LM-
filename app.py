@@ -28,7 +28,7 @@ def busqueda():
   if request.method == "GET":
     return render_template('index.html')
   else:
-    nombre = raw_input("Dime el titulo de un comic: ")
+    nombre = input("Dime el titulo de un comic: ")
     payload = {'apikey': public,'ts': ts,'hash': hash,'title': nombre}
     r = requests.get(base + 'comics', params= payload)
     if r.status_code == 200:
