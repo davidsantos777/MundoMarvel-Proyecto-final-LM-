@@ -25,7 +25,6 @@ def busqueda():
   if request.method == "GET":
     return render_template('index.html')
   else:
-<<<<<<< HEAD
     lista = []
     nombre = request.form.get("datos")
     tipo = request.form.get("tipo")
@@ -46,21 +45,3 @@ def busqueda():
     return render_template('index.html', datos = lista)
 
 app.run('0.0.0.0', debug = True)
-=======
-    nombre = raw_input("Dime el titulo de un comic: "))
-    payload = {'apikey': public,'ts': ts,'hash': hash,'title': nombre}
-    r = requests.get(base + 'comics', params= payload)
-    if r.status_code == 200:
-      results = r.json()
-      lista = []
-      for i in results['data']['results']:
-        lista.append({'Id': i["id"], 'Titulo': i['title'], 'Sinopsis': i['description']})
-      return render_template('index.html', datos = lista)
-
-
-app.run('0.0.0.0',int(port), debug=True)
-
-
-
-                                  
->>>>>>> b646549ba9d13c963ab9c96fad2bde227b5f5b1f
