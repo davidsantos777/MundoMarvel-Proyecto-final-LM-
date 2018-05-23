@@ -12,8 +12,6 @@ ts = '1'
 
 app = Flask(__name__)
 
-port=os.environ["PORT"]
-
 hash = hashlib.md5((ts + private + public).encode()).hexdigest()
 
 base = "https://gateway.marvel.com/v1/public/"
@@ -24,21 +22,26 @@ def inicio():
 
 @app.route('/busqueda', methods = ["get", "post"])
 def busqueda():
-  lista = []
   if request.method == "GET":
     return render_template('index.html')
   else:
-    nombre = raw_input("Dime el titulo de un comic: ")
-    payload = {'apikey': public,'ts': ts,'hash': hash,'title': nombre}
-    r = requests.get(base + 'comics', params= payload)
-    if r.status_code == 200:
-      results = r.json()
-      lista.append(results)
-      return render_template('index.html', datos = lista)
+    lista = []
+    nombre = request.form.get("datos")
+    tipo = request.form.get("tipo")
+    if tipo == "comics":
+      payload = {'apikey': public,'ts': ts,'hash': hash,'title': nombre}
+      r = requests.get(base + 'comics', params= payload)
+      if r.status_code == 200:
+        results = r.json()
+        for i in results['data']['results']:
+          lista.append({'Id': i["id"], 'Titulo': i['title'], 'Sinopsis': i['description']})
+    elif tipo == "eventos":
+      payload = {'apikey': public,'ts': ts,'hash': hash,'title': nombre}
+      r = requests.get(base + 'comics', params= payload)
+      if r.status_code == 200:
+        results = r.json()
+        for i in results['data']['results']:
+          lista.append({'Id': i["id"], 'Titulo': i['title'], 'Sinopsis': i['description']})
+    return render_template('index.html', datos = lista)
 
-
-app.run('0.0.0.0',int(port), debug=True)
-
-
-
-                                  
+app.run('0.0.0.0', debug = True)
