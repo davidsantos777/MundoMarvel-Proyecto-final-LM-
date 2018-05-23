@@ -11,6 +11,7 @@ private = 'a21215a318c6fb1eeb9e5763e08a9c7352317055'
 ts = '1'
 
 app = Flask(__name__)
+port = os.environ['PORT']
 
 hash = hashlib.md5((ts + private + public).encode()).hexdigest()
 
@@ -44,4 +45,4 @@ def busqueda():
           lista.append({'Id': i["id"], 'Titulo': i['title'], 'Sinopsis': i['description']})
     return render_template('index.html', datos = lista)
 
-app.run('0.0.0.0', debug = True)
+app.run('0.0.0.0', int(port), debug = True)
