@@ -20,8 +20,9 @@
 			<div id="wrapper">
 
 				<!-- Header -->
-					<header id="header" class="alt">
-						<a href="templates/index.html" class="logo"><strong>Mundo</strong> <span>Marvel</span></a>
+				<!-- Note: The "styleN" class below should match that of the banner element. -->
+					<header id="header" class="alt style2">
+						<a href="/" class="logo"><strong>Mundo</strong> <span>Marvel</span></a>
 						<nav>
 							<a href="#menu">Menú</a>
 						</nav>
@@ -36,90 +37,78 @@
 					</nav>
 
 				<!-- Banner -->
-					<section id="banner" class="major">
+				<!-- Note: The "styleN" class below should match that of the header element. -->
+					<section id="banner" class="style2">
 						<div class="inner">
+							<span class="image">
+								<img src="static/images/banner.jpg" alt="" />
+							</span>
 							<header class="major">
-								<h1>Bienvenido a MundoMarvel</h1>
+								<h1>Búsqueda</h1>
 							</header>
 							<div class="content">
-								<p>Sitio web que recoge toda la información sobre tus heroes y villanos favoritos</p>
+								<p>Elige una categoría y escribe sobre lo que quieras obtener información para comenzar con tu búsqueda</p>
 							</div>
 						</div>
 					</section>
-
-
-					<div id="main">
-
-						<section id="two">
-									<div class="inner">
-										<header class="major">
-											<h2>Información</h2>
-										</header>
-										<p>MundoMarvel es una web especializada en todo tipo de información sobre el universo Marvel. Aloja toda la información para que realices la búsqueda que desees, ya sea sobre algún personaje en particular, cómic en el que apareció por primera vez, año de creación, eventos importantes relacionados con ese personaje... Multitud de posibilidades. Cualquier cosa que te interese sobre el mundo marvelita podrás encontrala aquí.</p>
-										<ul class="actions">
-											<li><a href="#one" class="button next scrolly">Comenzar búsqueda</a></li>
-										</ul>
-									</div>
-						</section>
-
-					</div>
 
 				<!-- Main -->
 					<div id="main">
 
 						<!-- One -->
-							<section id="one" class="tiles">
-								<article>
-									<span class="image">
-										<img src="static/images/pic01.jpg" alt="" />
-									</span>
+							<section id="one">
+								<div class="inner">
 									<header class="major">
-										<h3><a href="/busqueda" class="link">Personajes</a></h3>
+										<h2>Sed amet aliquam</h2>
 									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="static/images/pic02.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="/busqueda" class="link">Eventos</a></h3>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="static/images/pic03.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="/busqueda" class="link">Series</a></h3>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="static/images/pic04.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="/busqueda" class="link">Cómics</a></h3>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="static/images/pic05.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="/busqueda" class="link">Creadores</a></h3>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="static/images/pic06.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a href="/busqueda" class="link">Historias</a></h3>
-									</header>
-								</article>
+									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna.</p>
+								</div>
 							</section>
 
 					</div>
+
+
+					<div id="main">
+						<section id ="busqueda" class="main">
+							<form action="/busqueda_personalizada" method="post">
+								<center>
+								Indica lo que quieres buscar: <input type="text" name="datos"><br>
+								<br>
+								<br>
+								<br>
+								<input type="radio" name="tipo" value="comics" checked> Comics<br>
+								<br>
+								<br>
+								<br>
+				  				<input type="radio" name="tipo" value="eventos"> Eventos<br>
+				  				<br>
+				  				<br>
+				  				<br>
+				  				<input type="radio" name="tipo" value="creadores"> Creadores <br>
+				  				<br>
+				  				<br>
+				  				<br>
+				  				<input type="radio" name="tipo" value="personajes"> Personajes <br>
+				  				<br>
+				  				<br>
+				  				<br>
+				  				<input type="radio" name="tipo" value="series"> Series <br>
+				  				<br>
+				  				<br>
+				  				<br>
+				  				<input type="radio" name="tipo" value="historias"> Historias <br>
+				  				</center>
+							</form>
+							<br>
+				  			<br>
+				  			<br>
+							{% for i in datos %}
+							<h1>Título: {{ i['Titulo'] }}</h1>
+							<h2>ID: {{ i['Id'] }}</h2>
+							<h3>Sinopsis: {{ i['Sinopsis'] }}</h3>
+							{% endfor %} 
+						</section>
+				</div>
 
 				<!-- Contact -->
 					<section id="contact">
@@ -127,7 +116,7 @@
 							<section>
 								<form method="post" action="#">
 									<div class="field half first">
-										<label for="name">Nombre</label>
+										<label for="name">Name</label>
 										<input type="text" name="name" id="name" />
 									</div>
 									<div class="field half">
@@ -135,12 +124,12 @@
 										<input type="text" name="email" id="email" />
 									</div>
 									<div class="field">
-										<label for="message">Mensaje</label>
+										<label for="message">Message</label>
 										<textarea name="message" id="message" rows="6"></textarea>
 									</div>
 									<ul class="actions">
-										<li><input type="submit" value="Enviar Mensaje" class="special" /></li>
-										<li><input type="reset" value="Borrar" /></li>
+										<li><input type="submit" value="Send Message" class="special" /></li>
+										<li><input type="reset" value="Clear" /></li>
 									</ul>
 								</form>
 							</section>
@@ -155,14 +144,14 @@
 								<section>
 									<div class="contact-method">
 										<span class="icon alt fa-phone"></span>
-										<h3>Tlf de Contacto</h3>
+										<h3>Phone</h3>
 										<span>(000) 000-0000 x12387</span>
 									</div>
 								</section>
 								<section>
 									<div class="contact-method">
 										<span class="icon alt fa-home"></span>
-										<h3>Dirección</h3>
+										<h3>Address</h3>
 										<span>1234 Somewhere Road #5432<br />
 										Nashville, TN 00000<br />
 										United States of America</span>
