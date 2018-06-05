@@ -22,7 +22,7 @@ def inicio():
 
 @app.route('/busqueda')
 def busqueda():
-  return render_template('landing.html')
+  return render_template('busqueda.html')
 
 @app.route('/busqueda_personalizada', methods = ["get", "post"])
 def busqueda_personalizada():
