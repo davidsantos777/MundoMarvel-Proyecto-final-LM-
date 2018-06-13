@@ -32,7 +32,17 @@
 					<nav id="menu">
 						<ul class="links">
 							<li><a href="/">Inicio</a></li>
-							<li><a href="/busqueda">Búsqueda</a></li>
+							<li>
+								<span class="opener">Búsqueda</span>
+								<ul>
+									<li><a href="/busqueda_personajes">Personajes</a></li>
+									<li><a href="/busqueda_eventos">Eventos</a></li>
+									<li><a href="/busqueda_series">Series</a></li>
+									<li><a href="/busqueda_comics">Cómics</a></li>
+									<li><a href="/busqueda_creadores">Creadores</a></li>
+									<li><a href="/busqueda_historias">Historias</a></li>
+								</ul>
+							</li>
 						</ul>
 					</nav>
 
@@ -44,10 +54,10 @@
 								<img src="static/images/banner.jpg" alt="" />
 							</span>
 							<header class="major">
-								<h1>Búsqueda</h1>
+								<h1>Series</h1>
 							</header>
 							<div class="content">
-								<p>Elige una categoría y escribe sobre lo que quieras obtener información para comenzar con tu búsqueda</p>
+								<p>Escribe sobre lo que quieras obtener información para comenzar con tu búsqueda</p>
 							</div>
 						</div>
 					</section>
@@ -69,34 +79,10 @@
 
 
 					<div id="main">
-						<section id ="busqueda" class="main">
-							<form action="/busqueda_personalizada" method="post">
+						<section id ="busqueda_series" class="main">
+							<form action="/busqueda_series" method="post">
 								<center>
 								Indica lo que quieres buscar: <input type="text" name="datos"><br>
-								<br>
-								<br>
-								<br>
-								<input type="radio" name="tipo" value="comics" checked> Comics<br>
-								<br>
-								<br>
-								<br>
-				  				<input type="radio" name="tipo" value="eventos"> Eventos<br>
-				  				<br>
-				  				<br>
-				  				<br>
-				  				<input type="radio" name="tipo" value="creadores"> Creadores <br>
-				  				<br>
-				  				<br>
-				  				<br>
-				  				<input type="radio" name="tipo" value="personajes"> Personajes <br>
-				  				<br>
-				  				<br>
-				  				<br>
-				  				<input type="radio" name="tipo" value="series"> Series <br>
-				  				<br>
-				  				<br>
-				  				<br>
-				  				<input type="radio" name="tipo" value="historias"> Historias <br>
 				  				</center>
 							</form>
 							<br>
@@ -106,7 +92,10 @@
 							<h1>Título: {{ i['Titulo'] }}</h1>
 							<h2>ID: {{ i['Id'] }}</h2>
 							<h3>Sinopsis: {{ i['Sinopsis'] }}</h3>
-							{% endfor %} 
+							{% endfor %}
+							<br>
+							<br>
+							<br>
 						</section>
 				</div>
 
