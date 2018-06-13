@@ -42,19 +42,17 @@ def busqueda_comics():
     return render_template('busqueda_comics.html', datos = lista)
 
 
-@app.route('/resultadoc/<id>', methods = ["get", "post"])
+@app.route('/resultados_comics/<id>', methods = ["get", "post"])
 def resultados_comics(id):
-  nombre = request.form.get("datos")
-  payload = {'apikey': public,'ts': ts,'hash': hash,'title': nombre}
-  r = requests.get(base + 'comics', params= payload)
-  doc=json.loads(r.content.decode("utf-8"))
-    
-  return render_template('resultados_comics.html', datos = doc)
+  lista_resultadoc = []
+  payload = {'apikey': public,'ts': ts,'hash': hash}
+  r = requests.get(base + 'comics/' + id, params= payload)
+  if r.status_code == 200:
+    results = r.json()
+    for i in results['data']['results']:
+      lista_resultadoc.append({'Sinopsis': i['description']})
 
-
-
-
-
+  return render_template('resultados_comics.html', datos = lista_resultadoc)
 
 
 @app.route('/busqueda_personajes', methods = ["get", "post"])
@@ -78,7 +76,7 @@ def busqueda_personajes():
         lista_2.append({'Nombre': i['name'],'Biografia': i['description']})
 
       for i in results_img['results']:
-        if i['publisher']['id'] == 31:
+        if i['publisher']['name'] == "Marvel" or 'publisher' not in i:
           lista_img.append({'Imagen': i['image']['medium_url']})
 
     return render_template('busqueda_personajes.html', datos = lista_2, datos2 = lista_img)
@@ -112,7 +110,7 @@ def busqueda_creadores():
     if r.status_code == 200:
       results = r.json()
       for i in results['data']['results']:
-        lista_4.append({'Id': i["id"], 'Nombre': i['firstName'], 'Sinopsis': i['description']})
+        lista_4.append({'Nombre': i['fullName']})
     return render_template('busqueda_creadores.html', datos = lista_4)
 
 
