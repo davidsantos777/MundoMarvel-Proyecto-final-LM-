@@ -10,7 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="static/assets/css/main.css" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
@@ -71,7 +71,9 @@
 									<header class="major">
 										<h2>Sed amet aliquam</h2>
 									</header>
-									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna.</p>
+									{% for i in datos %}
+									<p>{{ i['Sinopsis'] }}</p><br>
+									{% endfor %}
 								</div>
 							</section>
 
@@ -79,18 +81,15 @@
 
 
 					<div id="main">
-						<section id ="resultadoc" class="main">
-							<form action="/resultadoc" method="post">
-								<center>
-								Indica lo que quieres buscar: <input type="text" name="datos"><br>
-				  				</center>
-							</form>
+						<section id ="resultados_comics" class="main">
+							<form action="/resultados_comics" method="post">
 							
 
 							<div class="spotlight">
 								<div class="content">
 									<header class="major">
-									<h1>{{ datos['Sinopsis']  }}</h1>	</header>
+									
+									</header>
 								</div>
 							</div>
 
