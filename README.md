@@ -27,9 +27,13 @@ https://mundomarvel.herokuapp.com/
 
 API de Marvel
 
+API de ComicVine
+
 **URL de la API(s) utilizada(s):**
 
 https://developer.marvel.com/
+
+https://comicvine.gamespot.com/api/
 
 **Lenguaje(s) de marcas que utiliza(n) la(s) API:**
 
