@@ -10,7 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="static/assets/css/main.css" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
@@ -54,7 +54,7 @@
 								<img src="static/images/banner.jpg" alt="" />
 							</span>
 							<header class="major">
-								<h1>Eventos</h1>
+								<h1>Personajes</h1>
 							</header>
 							<div class="content">
 								<p>Escribe sobre lo que quieras obtener información para comenzar con tu búsqueda</p>
@@ -69,41 +69,27 @@
 
 
 					<div id="inner">
-						<section id ="busqueda_eventos" class="inner">
-							<form action="/busqueda_eventos" method="post">
+						<section id ="busqueda_personajes" class="inner">
+							<form action="/busqueda_personajes" method="post">
 								<center>
-								Indica lo que quieres buscar: <input type="text" name="datos"><br>
-				  				</center>
+								Indica el alias del personaje(o grupo de personajes): <input type="text" name="datos"><br>
+								</center>
 							</form>
 							<br>
 				  			<br>
 				  			<br>
 							{% for i in datos %}
-							<h1>Título: {{ i['Titulo'] }}</h1>
-							<h3>Sinopsis: {{ i['Sinopsis'] }}</h3>
-							<h4>Comienzo: {{ i['Comienzo'] }}</h4>
-							<h4>Finalización: {{ i['Finalizacion'] }}</h4>
-							{% endfor %}
-							{% for i in datos7 %}
-							<h4>Evento siguiente: <a href="/eventos_relacionados/{{ i['Siguiente'] }}">{{ i['Siguiente'] }}</a></h4>
-							<h4>Evento anterior: <a href="/eventos_relacionados/{{ i['Anterior'] }}">{{ i['Anterior'] }}</a></h4>
+							<h1>Nombre: {{ i['Nombre'] }}</h1>
+							<h3>Biografía: {{ i['Biografia'] }}</h3>
 							{% endfor %}
 							{% for i in datos2 %}
-							<h4>Creador: {{ i['Creador'] }}</h4>
-							<h4>Rol: {{ i['Rol'] }}</h4>
-							{% endfor %} 
-							{% for i in datos3 %}
-							<h4>Personaje: <a href="/personajes_relacionados/{{ i['Personaje'] }}">{{ i['Personaje'] }}</a></h4>
+							<center>
+							<h1></h1><img src="{{ i['Imagen'] }}" alt=""/>
+							</center>
 							{% endfor %}
-							{% for i in datos4 %}
-							<h4>Historia relacionada: {{ i['Historia'] }}</h4>
-							{% endfor %} 
-							{% for i in datos5 %}
-							<h4>Cómic relacionado: {{ i['Comics'] }}</h4>
-							{% endfor %} 
-							{% for i in datos6 %}
-							<h4>Serie relacionada: {{ i['Series'] }}</h4>
-							{% endfor %}
+							<br>
+							<br>
+							<br>
 						</section>
 				</div>
 
@@ -184,6 +170,12 @@
 			<script src="static/assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="static/assets/js/main.js"></script>
+
+	https://comicvine.gamespot.com/api/character/?api_key=1ab596554f32d6f88221fe969d1a8ca3f67374d1&filter=name:captain%20america
+
+	https://en.wikipedia.org/w/api.php?action=opensearch&search=iron-man&limit=1&format=json - una busqueda en concreto
+
+	http://en.wikipedia.org/w/api.php?action=parse&page=google&prop=text&format=json&callback=?
 
 	</body>
 </html>

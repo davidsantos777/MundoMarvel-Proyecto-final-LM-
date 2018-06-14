@@ -65,38 +65,21 @@
 				<!-- Main -->
 					<div id="main">
 
-						<!-- One -->
-							<section id="one">
-								<div class="inner">
-									<header class="major">
-										<h2>Sed amet aliquam</h2>
-									</header>
-									{% for i in datos %}
-									<p>{{ i['Sinopsis'] }}</p><br>
-									{% endfor %}
-								</div>
-							</section>
-
 					</div>
 
 
-					<div id="main">
-						<section id ="resultados_comics" class="main">
+					<div id="inner">
+						<section id ="resultados_comics" class="inner">
 							<form action="/resultados_comics" method="post">
-							
-
-							<div class="spotlight">
-								<div class="content">
-									<header class="major">
-									
-									</header>
-								</div>
-							</div>
-
+							</form>
+							{% for i in datos %}
+							<h2>{{ i['Titulo'] }}</h2>>
+							<p>{{ i['Sinopsis'] }}</p><br>
+							<h4>Serie relacionada: {{i['Serie'] }}</h4>>
+							{% endfor %}
 						</section>
-					</div>
+					</div>	
 
-				<!-- Contact -->
 					<section id="contact">
 						<div class="inner">
 							<section>

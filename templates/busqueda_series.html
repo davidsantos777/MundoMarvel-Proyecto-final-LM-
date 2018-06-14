@@ -65,21 +65,11 @@
 				<!-- Main -->
 					<div id="main">
 
-						<!-- One -->
-							<section id="one">
-								<div class="inner">
-									<header class="major">
-										<h2>Sed amet aliquam</h2>
-									</header>
-									<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna.</p>
-								</div>
-							</section>
-
 					</div>
 
 
-					<div id="main">
-						<section id ="busqueda_series" class="main">
+					<div id="inner">
+						<section id ="busqueda_series" class="inner">
 							<form action="/busqueda_series" method="post">
 								<center>
 								Indica lo que quieres buscar: <input type="text" name="datos"><br>
@@ -90,8 +80,7 @@
 				  			<br>
 							{% for i in datos %}
 							<h1>Título: {{ i['Titulo'] }}</h1>
-							<h2>ID: {{ i['Id'] }}</h2>
-							<h3>Sinopsis: {{ i['Sinopsis'] }}</h3>
+							<h2>Sinopsis: {{ i['Sinopsis'] }}</h2>
 							{% endfor %}
 							<br>
 							<br>
