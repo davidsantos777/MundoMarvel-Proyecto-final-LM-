@@ -71,12 +71,8 @@
 					<div id="inner">
 						<section id ="busqueda_historias" class="inner">
 							<form action="/busqueda_historias" method="post">
-								<center>
 								Escribe la ID de lo que quieras buscar: <input type="text" name="datos"><br>
-				  				</center>
-				  				<center>
 				  				Peticiones de ejemplo: Captain America (Id: 1009220), Civil War (Id: 22582), Secret Invasion (Id: 4423)...
-				  				</center>
 							</form>
 							{% for i in datos %}
 								{% for ii in i["Serie"] %}
