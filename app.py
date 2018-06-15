@@ -8,8 +8,6 @@ import json
 
 ts = '1'
 
-app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
-
 app = Flask(__name__)
 
 hash = hashlib.md5((ts + private + public).encode()).hexdigest()
