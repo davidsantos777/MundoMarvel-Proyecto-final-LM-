@@ -76,42 +76,97 @@
 				  				</center>
 				  				<center>
 				  				Peticiones de ejemplo: 269, 1582, 22582...
-				  				<center>
+				  				</center>
 							</form>
 							{% for i in datos %}
-							<h3>Serie: {{ i['Serie'] }}</h3>
-							<h3>Cómic: {{ i['Comic'] }}</h3>
-							<h3>Personaje: {{ i['Personaje'] }}</h3>
-							<h3>Evento: {{ i['Evento'] }}</h3>
-							<h3>Creador: {{ i['Creador'] }}</h3>
+								{% for ii in i["Serie"] %}
+								       <h4>Serie relacionada: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Comic"] %}
+								       <h4>Cómic relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Personaje"] %}
+								       <h4>Personaje relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Evento"] %}
+								       <h4>Evento relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Creador"] %}
+								       <h4>Creador relacionado: {{ii["name"]}}
+								       <h4>Rol: {{ii["role"]}}
+								{% endfor %}
 							{% endfor %} 
 							{% for i in datos2 %}
-							<h3>Cómic: {{ i['Comic'] }}</h3>
-							<h3>Serie: {{ i['Serie'] }}</h3>
-							<h3>Personaje: {{ i['Personaje'] }}</h3>
-							<h3>Evento: {{ i['Evento'] }}</h3>
-							<h3>Creador: {{ i['Creador'] }}</h3>
+								{% for ii in i["Comic"] %}
+								       <h4>Cómic relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Serie"] %}
+								       <h4>Serie relacionada: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Personaje"] %}
+								       <h4>Personaje relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Evento"] %}
+								       <h4>Evento relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Creador"] %}
+								       <h4>Creador relacionado: {{ii["name"]}}
+								       <h4>Rol: {{ii["role"]}}
+								{% endfor %}
 							{% endfor %}
 							{% for i in datos3 %}
-							<h3>Personaje: {{ i['Personaje'] }}</h3>
-							<h3>Serie: {{ i['Serie'] }}</h3>
-							<h3>Cómic: {{ i['Comic'] }}</h3>
-							<h3>Evento: {{ i['Evento'] }}</h3>
-							<h3>Creador: {{ i['Creador'] }}</h3>
+								{% for ii in i["Personaje"] %}
+								       <h4>Personaje relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Serie"] %}
+								       <h4>Serie relacionada: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Comic"] %}
+								       <h4>Cómic relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Evento"] %}
+								       <h4>Evento relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Creador"] %}
+								       <h4>Creador relacionado: {{ii["name"]}}
+								       <h4>Rol: {{ii["role"]}}
+								{% endfor %}
 							{% endfor %}
 							{% for i in datos4 %}
-							<h3>Evento: {{ i['Evento'] }}</h3>
-							<h3>Serie: {{ i['Serie'] }}</h3>
-							<h3>Cómic: {{ i['Comic'] }}</h3>
-							<h3>Personaje: {{ i['Personaje'] }}</h3>
-							<h3>Creador: {{ i['Creador'] }}</h3>
+								{% for ii in i["Evento"] %}
+								       <h4>Evento relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Serie"] %}
+								       <h4>Serie relacionada: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Comic"] %}
+								       <h4>Cómic relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Personaje"] %}
+								       <h4>Personaje relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Creador"] %}
+								       <h4>Creador relacionado: {{ii["name"]}}
+								       <h4>Rol: {{ii["role"]}}
+								{% endfor %}
 							{% endfor %}
-							{% for i in datos %}
-							<h3>Creador: {{ i['Creador'] }}</h3>
-							<h3>Serie: {{ i['Serie'] }}</h3>
-							<h3>Cómic: {{ i['Comic'] }}</h3>
-							<h3>Personaje: {{ i['Personaje'] }}</h3>
-							<h3>Evento: {{ i['Evento'] }}</h3>
+							{% for i in datos5 %}
+								{% for ii in i["Creador"] %}
+								       <h4>Creador relacionado: {{ii["name"]}}
+								       <h4>Rol: {{ii["role"]}}
+								{% endfor %}
+								{% for ii in i["Serie"] %}
+								       <h4>Serie relacionada: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Comic"] %}
+								       <h4>Cómic relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Personaje"] %}
+								       <h4>Personaje relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Evento"] %}
+								       <h4>Evento relacionado: {{ii["name"]}}
+								{% endfor %}
 							{% endfor %} 
 						</section>
 				</div>
