@@ -29,6 +29,7 @@ def inicio():
 def busqueda_comics():
   if request.method == "GET":
     return render_template('busqueda_comics.html')
+
   else:
     lista = []
     nombre = request.form.get("datos")
@@ -59,10 +60,10 @@ def resultados_comics(id):
 def busqueda_personajes():
   if request.method == "GET":
     return render_template('busqueda_personajes.html')
+
   else:
     lista_2 = []
     lista_img = []
-    indicador = False
     nombre_2 = request.form.get("datos")
     nombre_real = request.form.get("datos2")
     payload_2 = {'apikey': public,'ts': ts,'hash': hash,'name': nombre_2}
@@ -74,17 +75,9 @@ def busqueda_personajes():
       results = r.json()
       results_img = r_img.json()
       for i in results['data']['results']:
-        if i['description'] == "":
-          indicador = False
-        else:  
-          indicador = True
-          
-        if indicador == True:
-          lista_2.append({'Nombre': i['name'],'Biografia': i['description']})
-        else:
-          lista_2.append({'Nombre': i['name'],'Biografia': "No hay biografía disponible"})
+        lista_2.append({'Nombre': i['name'],'Biografia': i['description']})
 
-      for i in results_img['results']:  
+      for i in results_img['results']: 
         if 'publisher' not in i or i['publisher']['name'] == "Marvel":
           lista_img.append({'Imagen': i['image']['medium_url']})
 
@@ -106,7 +99,7 @@ def personajes_relacionados(nombre):
     for i in results['data']['results']:
       lista_personajes.append({'Nombre': i['name'],'Biografia': i['description']})
     
-    for i in results_img['results']:  
+    for i in results_img['results']: 
         if 'publisher' not in i or i['publisher']['name'] == "Marvel":
           lista_img.append({'Imagen': i['image']['medium_url']})
 
@@ -117,6 +110,7 @@ def personajes_relacionados(nombre):
 def busqueda_eventos():
   if request.method == "GET":
     return render_template('busqueda_eventos.html')
+
   else:
     lista_3 = []
     lista_sig_ant = []
@@ -130,6 +124,7 @@ def busqueda_eventos():
     r = requests.get(base + 'events', params= payload_3)
     if r.status_code == 200:
       results = r.json()
+
       for i in results['data']['results']:
         lista_3.append({'Titulo': i['title'], 'Sinopsis': i['description'], 'Comienzo': i['start'], 'Finalizacion': i['end']})
 
@@ -187,14 +182,40 @@ def eventos_relacionados(nombre):
     for i in results['data']['results'][0]['series']['items']:
       lista_series.append({'Series': i['name']})
 
-
   return render_template('eventos_relacionados.html', datos = lista_eventos, datos2 = lista_creadores, datos3 = lista_pj, datos4 = lista_historias, datos5 = lista_comics, datos6 = lista_series, datos7 = lista_sig_ant)
+
+
+@app.route('/comics_relacionados/<nombre>', methods = ["get", "post"])
+def comics_relacionados(nombre):
+  lista_comics = []
+  payload = {'apikey': public,'ts': ts,'hash': hash, 'title': nombre}
+  r = requests.get(base + 'comics', params= payload)
+  if r.status_code == 200:
+    results = r.json()
+    for i in results['data']['results']:
+      lista_comics.append({'Titulo': i['title'],'Sinopsis': i['description'], 'Serie': i['series']['name']})
+
+  return render_template('comics_relacionados.html', datos = lista_comics)
+
+
+@app.route('/series_relacionadas/<titulo>', methods = ["get", "post"])
+def series_relacionadas(titulo):
+  lista_series = []
+  payload = {'apikey': public,'ts': ts,'hash': hash, 'title': nombre}
+  r = requests.get(base + 'series', params= payload)
+  if r.status_code == 200:
+    results = r.json()
+    for i in results['data']['results']:
+      lista_series.append({'Titulo': i['title'],'Sinopsis': i['description'], 'Creador': i['creators']['items'], 'Personaje': i['characters']['items'], 'Historia': i['stories']['items'], 'Comic': i['comics']['items'], 'Evento': i['events']['items']})
+
+  return render_template('series_relacionadas.html', datos = lista_series)
 
 
 @app.route('/busqueda_creadores', methods = ["get", "post"])
 def busqueda_creadores():
   if request.method == "GET":
     return render_template('busqueda_creadores.html')
+
   else:
     lista_4 = []
     nombre_4 = request.form.get("datos")
@@ -203,7 +224,8 @@ def busqueda_creadores():
     if r.status_code == 200:
       results = r.json()
       for i in results['data']['results']:
-        lista_4.append({'Nombre': i['fullName']})
+        lista_4.append({'Nombre': i['fullName'],'Comics': i['comics']['items'], 'Series': i['series']['items'], 'Historias': i['stories']['items'], 'Eventos': i['events']['items']})
+
     return render_template('busqueda_creadores.html', datos = lista_4)
 
 
@@ -211,6 +233,7 @@ def busqueda_creadores():
 def busqueda_series():
   if request.method == "GET":
     return render_template('busqueda_series.html')
+
   else:
     lista_5 = []
     nombre_5 = request.form.get("datos")
@@ -219,7 +242,7 @@ def busqueda_series():
     if r.status_code == 200:
       results = r.json()
       for i in results['data']['results']:
-        lista_5.append({'Titulo': i['title'], 'Sinopsis': i['description']})
+        lista_5.append({'Titulo': i['title'],'Sinopsis': i['description'], 'Creador': i['creators']['items'], 'Personaje': i['characters']['items'], 'Historia': i['stories']['items'], 'Comic': i['comics']['items'], 'Evento': i['events']['items']})
 
     return render_template('busqueda_series.html', datos = lista_5)
 
@@ -228,18 +251,51 @@ def busqueda_series():
 def busqueda_historias():
   if request.method == "GET":
     return render_template('busqueda_historias.html')
+
   else:
-    lista_6 = []
-    nombre_6 = request.form.get("datos")
-    name = nombre_6
-    payload_6 = {'action': 'parse', 'page': nombre_6,'prop': 'text', 'format': 'json', 'callback': '?'}
-    r = requests.get(base_wiki, params= payload_6)
+    lista_series = []
+    lista_comics = []
+    lista_pj = []
+    lista_eventos = []
+    lista_creadores = []
+    ID = request.form.get("datos")
 
-    if r.status_code == 200:
-      results = r.json()
-    
+    payload_series = {'apikey': public,'ts': ts,'hash': hash,'series': ID}
+    r_series = requests.get(base + 'stories', params= payload_series)
 
-    print (lista_6)
-    return render_template('busqueda_historias.html', datos = lista_6)
+    payload_comics = {'apikey': public,'ts': ts,'hash': hash,'comics': ID}
+    r_comics = requests.get(base + 'stories', params= payload_comics)
+
+    payload_pj = {'apikey': public,'ts': ts,'hash': hash,'characters': ID}
+    r_pj = requests.get(base + 'stories', params= payload_pj)
+
+    payload_eventos = {'apikey': public,'ts': ts,'hash': hash,'events': ID}
+    r_eventos = requests.get(base + 'stories', params= payload_eventos)
+
+    payload_creadores = {'apikey': public,'ts': ts,'hash': hash,'creators': ID}
+    r_creadores = requests.get(base + 'stories', params= payload_creadores)
+
+    if r_series.status_code == 200 or r_comics.status_code == 200 or r_pj.status_code == 200 or r_eventos.status_code == 200 or r_creadores.status_code == 200:     
+      results_series = r_series.json()
+      results_comics = r_comics.json()
+      results_pj = r_pj.json()
+      results_eventos = r_eventos.json()
+      results_creadores = r_creadores.json()
+      for i in results_series['data']['results']:
+        lista_series.append({'Serie': i['series']['items'], 'Comic': i['comics']['items'], 'Personaje': i['characters']['items'], 'Evento': i['events']['items'], 'Creador': i['creators']['items']})
+
+      for i in results_comics['data']['results']:        
+        lista_comics.append({'Comic': i['comics']['items'], 'Serie': i['series']['items'], 'Personaje': i['characters']['items'], 'Evento': i['events']['items'], 'Creador': i['creators']['items']})
+
+      for i in results_pj['data']['results']:
+        lista_pj.append({'Personaje': i['characters']['items'], 'Serie': i['series']['items'], 'Comic': i['comics']['items'], 'Evento': i['events']['items'], 'Creador': i['creators']['items']})
+
+      for i in results_eventos['data']['results']:
+        lista_eventos.append({'Evento': i['events']['items'], 'Serie': i['series']['items'], 'Comic': i['comics']['items'], 'Personaje': i['characters']['items'], 'Creador': i['creators']['items']})
+   
+      for i in results_creadores['data']['results']:
+        lista_creadores.append({'Creador': i['creators']['items'], 'Serie': i['series']['items'], 'Comic': i['comics']['items'], 'Personaje': i['characters']['items'], 'Evento': i['events']['items']})
+
+    return render_template('busqueda_historias.html', datos = lista_series, datos2 = lista_comics, datos3 = lista_pj, datos4 = lista_eventos, datos5 = lista_creadores)
 
 app.run()
