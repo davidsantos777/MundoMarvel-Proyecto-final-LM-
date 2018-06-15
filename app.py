@@ -33,7 +33,7 @@ def busqueda_comics():
   else:
     lista = []
     nombre = request.form.get("datos")
-    payload = {'apikey': public,'ts': ts,'hash': hash,'title': nombre.replace(' ', '%20')}
+    payload = {'apikey': public,'ts': ts,'hash': hash,'title': nombre}
     r = requests.get(base + 'comics', params= payload)
     if r.status_code == 200:
       results = r.json()
@@ -111,7 +111,7 @@ def busqueda_eventos():
     lista_comics = []
     lista_series = []
     nombre_3 = request.form.get("datos")
-    payload_3 = {'apikey': public,'ts': ts,'hash': hash,'name': nombre_3.replace(' ', '%20')}
+    payload_3 = {'apikey': public,'ts': ts,'hash': hash,'name': nombre_3}
     r = requests.get(base + 'events', params= payload_3)
     if r.status_code == 200:
       results = r.json()
