@@ -69,8 +69,8 @@
 
 
 					<div id="inner">
-						<section id ="comics_relacionados" class="inner">
-							<form action="/comics_relacionados" method="post">
+						<section id ="busqueda_comics" class="inner">
+							<form action="/busqueda_comics" method="post">
 								<center>
 								Indica el nombre del cómic que quieres buscar: <input type="text" name="datos"><br>
 				  				</center>
@@ -79,9 +79,10 @@
 				  				</center>
 							</form>
 							{% for i in datos %}
-							<h2>{{ i['Titulo'] }}</h2>>
-							<p>{{ i['Sinopsis'] }}</p><br>
-							<h4>Serie relacionada: {{i['Serie'] }}</h4>>
+							<h1>{{ i['Titulo'] }}</h1>
+							<h3>ID: {{ i['Id'] }}</h3>
+							<h3>Sinopsis:</h3><p>{{ i['Sinopsis'] }}</p>
+							<h3>Serie relacionada: {{i['Serie'] }}</h3>
 							{% endfor %}
 						</section>
 					</div>	

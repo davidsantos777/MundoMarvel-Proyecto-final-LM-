@@ -78,12 +78,10 @@
 				  				Peticiones de ejemplo: Secret Wars, Mutant Massacre, Inferno...	
 				  				</center>
 							</form>
-							<br>
-				  			<br>
-				  			<br>
 							{% for i in datos %}
 							<h1>Título: {{ i['Titulo'] }}</h1>
-							<h3>Sinopsis: {{ i['Sinopsis'] }}</h3>
+							<h3>ID: {{ i['Id'] }}</h3>
+							<h3>Sinopsis:</h3><p>{{ i['Sinopsis'] }}</p>
 							<h4>Comienzo: {{ i['Comienzo'] }}</h4>
 							<h4>Finalización: {{ i['Finalizacion'] }}</h4>
 							{% endfor %}
@@ -96,7 +94,7 @@
 							<h4>Rol: {{ i['Rol'] }}</h4>
 							{% endfor %} 
 							{% for i in datos3 %}
-							<h4>Personaje: <a href="/personajes_relacionados/{{ i['Personaje'] }}">{{ i['Personaje'] }}</a></h4>
+							<h4>Personaje relacionado: <a href="/personajes_relacionados/{{ i['Personaje'] }}">{{ i['Personaje'] }}</a></h4>
 							{% endfor %}
 							{% for i in datos4 %}
 							<h4>Historia relacionada: {{ i['Historia'] }}</h4>

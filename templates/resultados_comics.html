@@ -79,9 +79,10 @@
 				  				</center>
 							</form>
 							{% for i in datos %}
-							<h2>{{ i['Titulo'] }}</h2>>
-							<p>{{ i['Sinopsis'] }}</p><br>
-							<h4>Serie relacionada: <a href="series_relacionadas/{{ i['titulo'] }}">{{ i['Serie'] }}</a><br></h4>
+							<h1>{{ i['Titulo'] }}</h1>
+							<h3>ID: {{ i['Id'] }}</h3>
+							<h3>Sinopsis:</h3><p>{{ i['Sinopsis'] }}</p>
+							<h3>Serie relacionada: <a href="/series_relacionadas/{{ i['Titulo'] }}">{{ i['Serie'] }}</a></h3>
 							{% endfor %}
 						</section>
 					</div>	

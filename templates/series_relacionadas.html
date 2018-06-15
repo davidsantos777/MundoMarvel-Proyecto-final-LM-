@@ -10,7 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="static/assets/css/main.css" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
@@ -69,30 +69,38 @@
 
 
 					<div id="inner">
-						<section id ="series_relacionadas" class="inner">
-							<form action="/series_relacionadas" method="post">
+						<section id ="busqueda_series" class="inner">
+							<form action="/busqueda_series" method="post">
 								<center>
 								Indica el nombre de la serie que quieres buscar: <input type="text" name="datos"><br>
 				  				</center>
 				  				<center>
 				  				Peticiones de ejemplo: Marvel zombies, World War Hulk, Avengers...
 				  				</center>
-							</form>
-							<br>
-				  			<br>
-				  			<br>
-							{% for i in datos %}
+				  			</form>
+				  			{% for i in datos %}
 							<h1>Título: {{ i['Titulo'] }}</h1>
-							<h3>Sinopsis: {{ i['Sinopsis'] }}</h3>
-							<h3>Creador: {{ i['Creador'] }}</h3>
-							<h3>Personaje: {{ i['Personaje'] }}</h3>
-							<h3>Historia relacionada: {{ i['Historia'] }}</h3>
-							<h3>Cómic relacionado: {{ i['Comic'] }}</h3>
-							<h3>Evento relacionado: {{ i['Evento'] }}</h3>
+							<h3>ID: {{ i['Id'] }}</h3>
+							<h3>Sinopsis:</h3><p>{{ i['Sinopsis'] }}</p>
+								{% for ii in i["Creador"] %}
+								    	<h4>Creador: {{ii["name"]}}
+								    	<h4>Rol: {{ii["role"]}}
+								{% endfor %}
+								{% for ii in i["Personaje"] %}
+								       	<h4>Personaje: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Historia"] %}
+								       	<h4>Historia relacionada: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Comic"] %}
+								       	<h4>Cómic relacionado: {{ii["name"]}}
+								{% endfor %}
+								{% for ii in i["Evento"] %}
+								       	<h4>Evento relacionado: {{ii["name"]}}
+								{% endfor %}
+							<br>
+							<br>	
 							{% endfor %}
-							<br>
-							<br>
-							<br>
 						</section>
 				</div>
 

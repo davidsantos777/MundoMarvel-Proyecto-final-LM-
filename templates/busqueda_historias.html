@@ -75,7 +75,7 @@
 								Escribe la ID de lo que quieras buscar: <input type="text" name="datos"><br>
 				  				</center>
 				  				<center>
-				  				Peticiones de ejemplo: 269, 1582, 22582...
+				  				Peticiones de ejemplo: Captain America (Id: 1009220), Civil War (Id: 22582), Secret Invasion (Id: 4423)...
 				  				</center>
 							</form>
 							{% for i in datos %}
@@ -95,6 +95,8 @@
 								       <h4>Creador relacionado: {{ii["name"]}}
 								       <h4>Rol: {{ii["role"]}}
 								{% endfor %}
+							<br>
+							<br>	
 							{% endfor %} 
 							{% for i in datos2 %}
 								{% for ii in i["Comic"] %}
@@ -113,6 +115,8 @@
 								       <h4>Creador relacionado: {{ii["name"]}}
 								       <h4>Rol: {{ii["role"]}}
 								{% endfor %}
+							<br>
+							<br>	
 							{% endfor %}
 							{% for i in datos3 %}
 								{% for ii in i["Personaje"] %}
@@ -131,6 +135,8 @@
 								       <h4>Creador relacionado: {{ii["name"]}}
 								       <h4>Rol: {{ii["role"]}}
 								{% endfor %}
+							<br>
+							<br>	
 							{% endfor %}
 							{% for i in datos4 %}
 								{% for ii in i["Evento"] %}
@@ -149,6 +155,8 @@
 								       <h4>Creador relacionado: {{ii["name"]}}
 								       <h4>Rol: {{ii["role"]}}
 								{% endfor %}
+							<br>
+							<br>	
 							{% endfor %}
 							{% for i in datos5 %}
 								{% for ii in i["Creador"] %}
@@ -167,6 +175,8 @@
 								{% for ii in i["Evento"] %}
 								       <h4>Evento relacionado: {{ii["name"]}}
 								{% endfor %}
+							<br>
+							<br>	
 							{% endfor %} 
 						</section>
 				</div>

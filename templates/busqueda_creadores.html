@@ -82,19 +82,22 @@
 				  			<br>
 				  			<br>
 							{% for i in datos %}
-							<h3>Nombre completo: {{ i['Nombre'] }}</h3>
+							<h2>Nombre completo: {{ i['Nombre'] }}</h2>
+							<h3>ID: {{ i['Id'] }}</h3>
 								{% for ii in i["Comics"] %}
-								       <h4>Cómic relacionado: {{ii["name"]}}
+								    <h4>Cómic relacionado: {{ii["name"]}}</h4>
 								{% endfor %}
 								{% for ii in i["Series"] %}
-								       <h4>Serie relacionada: {{ii["name"]}}
+								    <h4>Serie relacionada: {{ii["name"]}}</h4>
 								{% endfor %}
 								{% for ii in i["Historias"] %}
-								       <h4>Historia relacionada: {{ii["name"]}}
+								    <h4>Historia relacionada: {{ii["name"]}}</h4>
 								{% endfor %}
 								{% for ii in i["Eventos"] %}
-								       <h4>Evento relacionado: {{ii["name"]}}
+								    <h4>Evento relacionado: {{ii["name"]}}</h4>
 								{% endfor %}
+							<br>
+							<br>
 							{% endfor %}
 						</section>
 				</div>

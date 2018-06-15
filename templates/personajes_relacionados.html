@@ -83,7 +83,8 @@
 				  			<br>
 							{% for i in datos %}
 							<h1>Nombre: {{ i['Nombre'] }}</h1>
-							<h3>Biografía: {{ i['Biografia'] }}</h3>
+							<h3>ID: {{ i['Id'] }}</h3>
+							<h3>Biografía:</h3><p>{{ i['Biografia'] }}</p>
 							{% endfor %}
 							{% for i in datos2 %}
 							<center>

@@ -78,32 +78,29 @@
 				  				Peticiones de ejemplo: Marvel zombies, World War Hulk, Avengers...
 				  				</center>
 							</form>
-							<br>
-				  			<br>
-				  			<br>
 							{% for i in datos %}
 							<h1>Título: {{ i['Titulo'] }}</h1>
-							<h3>Sinopsis: {{ i['Sinopsis'] }}</h3>
+							<h3>ID: {{ i['Id'] }}</h3>
+							<h3>Sinopsis:</h3><p>{{ i['Sinopsis'] }}</p>
 								{% for ii in i["Creador"] %}
-								       <h4>Creador: {{ii["name"]}}
-								       <h4>Rol: {{ii["role"]}}
+								    	<h4>Creador: {{ii["name"]}}
+								    	<h4>Rol: {{ii["role"]}}
 								{% endfor %}
 								{% for ii in i["Personaje"] %}
-								       <h4>Personaje: {{ii["name"]}}
+								    	<h4>Personaje: {{ii["name"]}}
 								{% endfor %}
 								{% for ii in i["Historia"] %}
-								       <h4>Historia relacionada: {{ii["name"]}}
+								    	<h4>Historia relacionada: {{ii["name"]}}
 								{% endfor %}
 								{% for ii in i["Comic"] %}
-								       <h4>Cómic relacionado: {{ii["name"]}}
+								    	<h4>Cómic relacionado: {{ii["name"]}}
 								{% endfor %}
 								{% for ii in i["Evento"] %}
-								       <h4>Evento relacionado: {{ii["name"]}}
+								    	<h4>Evento relacionado: {{ii["name"]}}
 								{% endfor %}
+							<br>
+							<br>	
 							{% endfor %}
-							<br>
-							<br>
-							<br>
 						</section>
 				</div>
 
