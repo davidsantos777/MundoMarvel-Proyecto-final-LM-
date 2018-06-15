@@ -6,6 +6,8 @@ import requests
 import os
 import json
 
+public = '5404f8cbf841577db6f94fb3a3098d51'
+private = 'a21215a318c6fb1eeb9e5763e08a9c7352317055'
 ts = '1'
 
 app = Flask(__name__)
@@ -14,7 +16,9 @@ hash = hashlib.md5((ts + private + public).encode()).hexdigest()
 
 base = "https://gateway.marvel.com/v1/public/"
 
-base_2 = "http://comicvine.com/api/search/"   
+base_2 = "http://comicvine.com/api/search/"
+
+api_key = '1ab596554f32d6f88221fe969d1a8ca3f67374d1'
 
 @app.route('/')
 def inicio():
