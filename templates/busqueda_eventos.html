@@ -82,21 +82,21 @@
 							<h4>Finalización: {{ i['Finalizacion'] }}</h4>
 							{% endfor %}
 							{% for i in datos7 %}
-							<h4>Evento siguiente: <a href="/eventos_relacionados/{{ i['Siguiente'] }}">{{ i['Siguiente'] }}</a></h4>
-							<h4>Evento anterior: <a href="/eventos_relacionados/{{ i['Anterior'] }}">{{ i['Anterior'] }}</a></h4>
+							<h4>Evento siguiente:{{ i['Siguiente'] }}</a></h4>
+							<h4>Evento anterior:{{ i['Anterior'] }}</a></h4>
 							{% endfor %}
 							{% for i in datos2 %}
 							<h4>Creador: {{ i['Creador'] }}</h4>
 							<h4>Rol: {{ i['Rol'] }}</h4>
 							{% endfor %} 
 							{% for i in datos3 %}
-							<h4>Personaje relacionado: <a href="/personajes_relacionados/{{ i['Personaje'] }}">{{ i['Personaje'] }}</a></h4>
+							<h4>Personaje relacionado:{{ i['Personaje'] }}</a></h4>
 							{% endfor %}
 							{% for i in datos4 %}
 							<h4>Historia relacionada: {{ i['Historia'] }}</h4>
 							{% endfor %} 
 							{% for i in datos5 %}
-							<h4>Cómic relacionado: <a href="/comics_relacionados/{{ i['Comics'] }}">{{ i['Comics'] }}</a></h4>
+							<h4>Cómic relacionado:{{ i['Comics'] }}</a></h4>
 							{% endfor %} 
 							{% for i in datos6 %}
 							<h4>Serie relacionada: {{ i['Series'] }}</h4>
