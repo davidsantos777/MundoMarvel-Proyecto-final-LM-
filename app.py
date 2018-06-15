@@ -56,19 +56,6 @@ def resultados_comics(id):
   return render_template('resultados_comics.html', datos = lista_resultadoc)
 
 
-@app.route('/series_relacionadas/<nombre>', methods = ["get", "post"])
-def series_relacionadas(nombre):
-  lista_series = []
-  payload = {'apikey': public,'ts': ts,'hash': hash, 'title': nombre}
-  r = requests.get(base + 'series', params= payload)
-  if r.status_code == 200:
-    results = r.json()
-    for i in results['data']['results']:
-      lista_series.append({'Id': i["id"], 'Titulo': i['title'],'Sinopsis': i['description'], 'Creador': i['creators']['items'], 'Personaje': i['characters']['items'], 'Historia': i['stories']['items'], 'Comic': i['comics']['items'], 'Evento': i['events']['items']})
-
-  return render_template('series_relacionadas.html', datos = lista_series)
-
-
 @app.route('/busqueda_personajes', methods = ["get", "post"])
 def busqueda_personajes():
   if request.method == "GET":
@@ -138,77 +125,6 @@ def busqueda_eventos():
         lista_series.append({'Series': i['name']})
 
     return render_template('busqueda_eventos.html', datos = lista_3, datos2 = lista_creadores, datos3 = lista_pj, datos4 = lista_historias, datos5 = lista_comics, datos6 = lista_series, datos7 = lista_sig_ant)
-
-@app.route('/eventos_relacionados/<nombre>', methods = ["get", "post"])
-def eventos_relacionados(nombre):
-  lista_eventos = []
-  lista_sig_ant = []
-  lista_creadores = []
-  lista_pj = []
-  lista_historias = []
-  lista_comics = []
-  lista_series = []
-  payload = {'apikey': public,'ts': ts,'hash': hash, 'name': nombre}
-  r = requests.get(base + 'events', params= payload)
-  if r.status_code == 200:
-    results = r.json()
-    for i in results['data']['results']:
-      lista_eventos.append({'Id': i["id"], 'Titulo': i['title'], 'Sinopsis': i['description'], 'Comienzo': i['start'], 'Finalizacion': i['end']})
-
-    for i in results['data']['results']:
-      lista_sig_ant.append({'Siguiente': i['next']['name'], 'Anterior': i['previous']['name']})
-
-    for i in results['data']['results'][0]['creators']['items']:
-      lista_creadores.append({'Creador': i['name'], 'Rol': i['role']})
-
-    for i in results['data']['results'][0]['characters']['items']:
-      lista_pj.append({'Personaje': i['name']})
-
-    for i in results['data']['results'][0]['stories']['items']:
-      lista_historias.append({'Historia': i['name']})
-
-    for i in results['data']['results'][0]['comics']['items']:
-      lista_comics.append({'Comics': i['name']})
-
-    for i in results['data']['results'][0]['series']['items']:
-      lista_series.append({'Series': i['name']})
-
-  return render_template('eventos_relacionados.html', datos = lista_eventos, datos2 = lista_creadores, datos3 = lista_pj, datos4 = lista_historias, datos5 = lista_comics, datos6 = lista_series, datos7 = lista_sig_ant)
-
-
-@app.route('/personajes_relacionados/<nombre>', methods = ["get", "post"])
-def personajes_relacionados(nombre):
-  lista_personajes = []
-  lista_img = []
-  payload = {'apikey': public,'ts': ts,'hash': hash, 'name': nombre}
-  payload_img = {'api_key': api_key, 'format': 'json','query': nombre}
-  headers = {'User-Agent': 'Mi aplicación'}
-  r = requests.get(base + 'characters', params= payload)
-  r_img = requests.get(base_2, params= payload_img, headers = headers)
-  if r.status_code == 200 and r_img.status_code == 200:
-    results = r.json()
-    results_img = r_img.json()
-    for i in results['data']['results']:
-      lista_personajes.append({'Id': i["id"], 'Nombre': i['name'],'Biografia': i['description']})
-    
-    for i in results_img['results']: 
-        if 'publisher' not in i or i['publisher']['name'] == "Marvel":
-          lista_img.append({'Imagen': i['image']['medium_url']})
-
-  return render_template('personajes_relacionados.html', datos = lista_personajes, datos2 = lista_img)
-
-
-@app.route('/comics_relacionados/<nombre>', methods = ["get", "post"])
-def comics_relacionados(nombre):
-  lista_comics = []
-  payload = {'apikey': public,'ts': ts,'hash': hash, 'title': nombre}
-  r = requests.get(base + 'comics', params= payload)
-  if r.status_code == 200:
-    results = r.json()
-    for i in results['data']['results']:
-      lista_comics.append({'Id': i["id"], 'Titulo': i['title'],'Sinopsis': i['description'], 'Serie': i['series']['name']})
-
-  return render_template('comics_relacionados.html', datos = lista_comics)
 
 
 @app.route('/busqueda_creadores', methods = ["get", "post"])
