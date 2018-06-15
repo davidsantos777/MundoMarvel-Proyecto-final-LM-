@@ -78,7 +78,7 @@
 							<h1>{{ i['Titulo'] }}</h1>
 							<h3>ID: {{ i['Id'] }}</h3>
 							<h3>Sinopsis:</h3><p>{{ i['Sinopsis'] }}</p>
-							<h3>Serie relacionada: <a href="/series_relacionadas/{{ i['Titulo'] }}">{{ i['Serie'] }}</a></h3>
+							<h3>Serie relacionada: {{ i['Serie'] }}</a></h3>
 							{% endfor %}
 						</section>
 					</div>
