@@ -71,12 +71,8 @@
 					<div id="inner">
 						<section id ="busqueda_eventos" class="inner">
 							<form action="/busqueda_eventos" method="post">
-								<center>
 								Indica el nombre del evento que quieres buscar: <input type="text" name="datos"><br>
-				  				</center>
-				  				<center>
 				  				Peticiones de ejemplo: Secret Wars, Mutant Massacre, Inferno...	
-				  				</center>
 							</form>
 							{% for i in datos %}
 							<h1>Título: {{ i['Titulo'] }}</h1>
