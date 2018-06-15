@@ -111,7 +111,7 @@ def busqueda_eventos():
     lista_comics = []
     lista_series = []
     nombre_3 = request.form.get("datos")
-    payload_3 = {'apikey': public,'ts': ts,'hash': hash,'name': nombre_3}
+    payload_3 = {'apikey': public,'ts': ts,'hash': hash,'name': nombre_3.replace(' ', '%20')}
     r = requests.get(base + 'events', params= payload_3)
     if r.status_code == 200:
       results = r.json()
