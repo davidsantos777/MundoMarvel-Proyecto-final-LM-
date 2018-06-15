@@ -33,7 +33,7 @@ def busqueda_comics():
   else:
     lista = []
     nombre = request.form.get("datos")
-    payload = {'apikey': public,'ts': ts,'hash': hash,'title': nombre.replace(' ', '+')}
+    payload = {'apikey': public,'ts': ts,'hash': hash,'title': nombre.replace(' ', '%20')}
     r = requests.get(base + 'comics', params= payload)
     if r.status_code == 200:
       results = r.json()
