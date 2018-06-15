@@ -51,9 +51,22 @@ def resultados_comics(id):
   if r.status_code == 200:
     results = r.json()
     for i in results['data']['results']:
-      lista_resultadoc.append({'Titulo': i['title'],'Sinopsis': i['description'], 'Serie': i['series']['name']})
+      lista_resultadoc.append({'Id': i["id"], 'Titulo': i['title'], 'Sinopsis': i['description'], 'Serie': i['series']['name']})
 
   return render_template('resultados_comics.html', datos = lista_resultadoc)
+
+
+@app.route('/series_relacionadas/<nombre>', methods = ["get", "post"])
+def series_relacionadas(nombre):
+  lista_series = []
+  payload = {'apikey': public,'ts': ts,'hash': hash, 'title': nombre}
+  r = requests.get(base + 'series', params= payload)
+  if r.status_code == 200:
+    results = r.json()
+    for i in results['data']['results']:
+      lista_series.append({'Id': i["id"], 'Titulo': i['title'],'Sinopsis': i['description'], 'Creador': i['creators']['items'], 'Personaje': i['characters']['items'], 'Historia': i['stories']['items'], 'Comic': i['comics']['items'], 'Evento': i['events']['items']})
+
+  return render_template('series_relacionadas.html', datos = lista_series)
 
 
 @app.route('/busqueda_personajes', methods = ["get", "post"])
@@ -75,35 +88,13 @@ def busqueda_personajes():
       results = r.json()
       results_img = r_img.json()
       for i in results['data']['results']:
-        lista_2.append({'Nombre': i['name'],'Biografia': i['description']})
+        lista_2.append({'Id': i["id"], 'Nombre': i['name'],'Biografia': i['description']})
 
       for i in results_img['results']: 
         if 'publisher' not in i or i['publisher']['name'] == "Marvel":
           lista_img.append({'Imagen': i['image']['medium_url']})
 
     return render_template('busqueda_personajes.html', datos = lista_2, datos2 = lista_img)
-
-
-@app.route('/personajes_relacionados/<nombre>', methods = ["get", "post"])
-def personajes_relacionados(nombre):
-  lista_personajes = []
-  lista_img = []
-  payload = {'apikey': public,'ts': ts,'hash': hash, 'name': nombre}
-  payload_img = {'api_key': api_key, 'format': 'json','query': nombre}
-  headers = {'User-Agent': 'Mi aplicación'}
-  r = requests.get(base + 'characters', params= payload)
-  r_img = requests.get(base_2, params= payload_img, headers = headers)
-  if r.status_code == 200 and r_img.status_code == 200:
-    results = r.json()
-    results_img = r_img.json()
-    for i in results['data']['results']:
-      lista_personajes.append({'Nombre': i['name'],'Biografia': i['description']})
-    
-    for i in results_img['results']: 
-        if 'publisher' not in i or i['publisher']['name'] == "Marvel":
-          lista_img.append({'Imagen': i['image']['medium_url']})
-
-  return render_template('personajes_relacionados.html', datos = lista_personajes, datos2 = lista_img)
 
 
 @app.route('/busqueda_eventos', methods = ["get", "post"])
@@ -126,7 +117,7 @@ def busqueda_eventos():
       results = r.json()
 
       for i in results['data']['results']:
-        lista_3.append({'Titulo': i['title'], 'Sinopsis': i['description'], 'Comienzo': i['start'], 'Finalizacion': i['end']})
+        lista_3.append({'Id': i["id"], 'Titulo': i['title'], 'Sinopsis': i['description'], 'Comienzo': i['start'], 'Finalizacion': i['end']})
 
       for i in results['data']['results']:
         lista_sig_ant.append({'Siguiente': i['next']['name'], 'Anterior': i['previous']['name']})
@@ -162,7 +153,7 @@ def eventos_relacionados(nombre):
   if r.status_code == 200:
     results = r.json()
     for i in results['data']['results']:
-      lista_eventos.append({'Titulo': i['title'], 'Sinopsis': i['description'], 'Comienzo': i['start'], 'Finalizacion': i['end']})
+      lista_eventos.append({'Id': i["id"], 'Titulo': i['title'], 'Sinopsis': i['description'], 'Comienzo': i['start'], 'Finalizacion': i['end']})
 
     for i in results['data']['results']:
       lista_sig_ant.append({'Siguiente': i['next']['name'], 'Anterior': i['previous']['name']})
@@ -185,6 +176,28 @@ def eventos_relacionados(nombre):
   return render_template('eventos_relacionados.html', datos = lista_eventos, datos2 = lista_creadores, datos3 = lista_pj, datos4 = lista_historias, datos5 = lista_comics, datos6 = lista_series, datos7 = lista_sig_ant)
 
 
+@app.route('/personajes_relacionados/<nombre>', methods = ["get", "post"])
+def personajes_relacionados(nombre):
+  lista_personajes = []
+  lista_img = []
+  payload = {'apikey': public,'ts': ts,'hash': hash, 'name': nombre}
+  payload_img = {'api_key': api_key, 'format': 'json','query': nombre}
+  headers = {'User-Agent': 'Mi aplicación'}
+  r = requests.get(base + 'characters', params= payload)
+  r_img = requests.get(base_2, params= payload_img, headers = headers)
+  if r.status_code == 200 and r_img.status_code == 200:
+    results = r.json()
+    results_img = r_img.json()
+    for i in results['data']['results']:
+      lista_personajes.append({'Id': i["id"], 'Nombre': i['name'],'Biografia': i['description']})
+    
+    for i in results_img['results']: 
+        if 'publisher' not in i or i['publisher']['name'] == "Marvel":
+          lista_img.append({'Imagen': i['image']['medium_url']})
+
+  return render_template('personajes_relacionados.html', datos = lista_personajes, datos2 = lista_img)
+
+
 @app.route('/comics_relacionados/<nombre>', methods = ["get", "post"])
 def comics_relacionados(nombre):
   lista_comics = []
@@ -193,22 +206,9 @@ def comics_relacionados(nombre):
   if r.status_code == 200:
     results = r.json()
     for i in results['data']['results']:
-      lista_comics.append({'Titulo': i['title'],'Sinopsis': i['description'], 'Serie': i['series']['name']})
+      lista_comics.append({'Id': i["id"], 'Titulo': i['title'],'Sinopsis': i['description'], 'Serie': i['series']['name']})
 
   return render_template('comics_relacionados.html', datos = lista_comics)
-
-
-@app.route('/series_relacionadas/<titulo>', methods = ["get", "post"])
-def series_relacionadas(titulo):
-  lista_series = []
-  payload = {'apikey': public,'ts': ts,'hash': hash, 'title': nombre}
-  r = requests.get(base + 'series', params= payload)
-  if r.status_code == 200:
-    results = r.json()
-    for i in results['data']['results']:
-      lista_series.append({'Titulo': i['title'],'Sinopsis': i['description'], 'Creador': i['creators']['items'], 'Personaje': i['characters']['items'], 'Historia': i['stories']['items'], 'Comic': i['comics']['items'], 'Evento': i['events']['items']})
-
-  return render_template('series_relacionadas.html', datos = lista_series)
 
 
 @app.route('/busqueda_creadores', methods = ["get", "post"])
@@ -224,7 +224,7 @@ def busqueda_creadores():
     if r.status_code == 200:
       results = r.json()
       for i in results['data']['results']:
-        lista_4.append({'Nombre': i['fullName'],'Comics': i['comics']['items'], 'Series': i['series']['items'], 'Historias': i['stories']['items'], 'Eventos': i['events']['items']})
+        lista_4.append({'Id': i["id"], 'Nombre': i['fullName'],'Comics': i['comics']['items'], 'Series': i['series']['items'], 'Historias': i['stories']['items'], 'Eventos': i['events']['items']})
 
     return render_template('busqueda_creadores.html', datos = lista_4)
 
@@ -242,7 +242,7 @@ def busqueda_series():
     if r.status_code == 200:
       results = r.json()
       for i in results['data']['results']:
-        lista_5.append({'Titulo': i['title'],'Sinopsis': i['description'], 'Creador': i['creators']['items'], 'Personaje': i['characters']['items'], 'Historia': i['stories']['items'], 'Comic': i['comics']['items'], 'Evento': i['events']['items']})
+        lista_5.append({'Id': i["id"], 'Titulo': i['title'],'Sinopsis': i['description'], 'Creador': i['creators']['items'], 'Personaje': i['characters']['items'], 'Historia': i['stories']['items'], 'Comic': i['comics']['items'], 'Evento': i['events']['items']})
 
     return render_template('busqueda_series.html', datos = lista_5)
 
@@ -258,6 +258,7 @@ def busqueda_historias():
     lista_pj = []
     lista_eventos = []
     lista_creadores = []
+
     ID = request.form.get("datos")
 
     payload_series = {'apikey': public,'ts': ts,'hash': hash,'series': ID}
