@@ -71,12 +71,8 @@
 					<div id="inner">
 						<section id ="resultados_comics" class="inner">
 							<form action="/resultados_comics" method="post">
-								<center>
 								Indica el nombre del cómic que quieres buscar: <input type="text" name="datos"><br>
-				  				</center>
-				  				<center>
 				  				Peticiones de ejemplo: Civil War, Secret Empire, Infinity War...
-				  				</center>
 							</form>
 							{% for i in datos %}
 							<h1>{{ i['Titulo'] }}</h1>
