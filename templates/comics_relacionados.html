@@ -10,7 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="static/assets/css/main.css" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
@@ -54,7 +54,7 @@
 								<img src="static/images/banner.jpg" alt="" />
 							</span>
 							<header class="major">
-								<h1>Creadores</h1>
+								<h1>Cómics</h1>
 							</header>
 							<div class="content">
 								<p>Escribe sobre lo que quieras obtener información para comenzar con tu búsqueda</p>
@@ -69,32 +69,23 @@
 
 
 					<div id="inner">
-						<section id ="busqueda_creadores" class="inner">
-							<form action="/busqueda_creadores" method="post">
+						<section id ="comics_relacionados" class="inner">
+							<form action="/comics_relacionados" method="post">
 								<center>
-								Indica el nombre del artista que quieres buscar: <input type="text" name="datos"><br>
+								Indica el nombre del cómic que quieres buscar: <input type="text" name="datos"><br>
 				  				</center>
 				  				<center>
-				  				Peticiones de ejemplo: Brian, Stan, Martin...
+				  				Peticiones de ejemplo: Civil War, Secret Empire, Infinity War...
 				  				</center>
 							</form>
-							<br>
-				  			<br>
-				  			<br>
 							{% for i in datos %}
-							<h2>Nombre completo: {{ i['Nombre'] }}</h2>
-							<h3>Comics: {{ i['Comics'] }}</h3>
-							<h3>Series: {{ i['Series'] }}</h3>
-							<h3>Historias: {{ i['Historias'] }}</h3>
-							<h3>Eventos: {{ i['Eventos'] }}</h3>
+							<h2>{{ i['Titulo'] }}</h2>>
+							<p>{{ i['Sinopsis'] }}</p><br>
+							<h4>Serie relacionada: {{i['Serie'] }}</h4>>
 							{% endfor %}
-							<br>
-							<br>
-							<br>
 						</section>
-				</div>
+					</div>	
 
-				<!-- Contact -->
 					<section id="contact">
 						<div class="inner">
 							<section>

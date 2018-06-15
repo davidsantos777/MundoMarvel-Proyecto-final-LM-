@@ -72,7 +72,10 @@
 						<section id ="busqueda_series" class="inner">
 							<form action="/busqueda_series" method="post">
 								<center>
-								Indica lo que quieres buscar: <input type="text" name="datos"><br>
+								Indica el nombre de la serie que quieres buscar: <input type="text" name="datos"><br>
+				  				</center>
+				  				<center>
+				  				Peticiones de ejemplo: Marvel zombies, World War Hulk, Avengers...
 				  				</center>
 							</form>
 							<br>
@@ -80,7 +83,12 @@
 				  			<br>
 							{% for i in datos %}
 							<h1>Título: {{ i['Titulo'] }}</h1>
-							<h2>Sinopsis: {{ i['Sinopsis'] }}</h2>
+							<h3>Sinopsis: {{ i['Sinopsis'] }}</h3>
+							<h3>Creador: {{ i['Creador'] }}</h3>
+							<h3>Personaje: {{ i['Personaje'] }}</h3>
+							<h3>Historia relacionada: {{ i['Historia'] }}</h3>
+							<h3>Cómic relacionado: {{ i['Comic'] }}</h3>
+							<h3>Evento relacionado: {{ i['Evento'] }}</h3>
 							{% endfor %}
 							<br>
 							<br>

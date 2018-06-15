@@ -72,7 +72,10 @@
 						<section id ="busqueda_eventos" class="inner">
 							<form action="/busqueda_eventos" method="post">
 								<center>
-								Indica lo que quieres buscar: <input type="text" name="datos"><br>
+								Indica el nombre del evento que quieres buscar: <input type="text" name="datos"><br>
+				  				</center>
+				  				<center>
+				  				Peticiones de ejemplo: Secret Wars, Mutant Massacre, Inferno...	
 				  				</center>
 							</form>
 							<br>
@@ -99,7 +102,7 @@
 							<h4>Historia relacionada: {{ i['Historia'] }}</h4>
 							{% endfor %} 
 							{% for i in datos5 %}
-							<h4>Cómic relacionado: {{ i['Comics'] }}</h4>
+							<h4>Cómic relacionado: <a href="/comics_relacionados/{{ i['Comics'] }}">{{ i['Comics'] }}</a></h4>
 							{% endfor %} 
 							{% for i in datos6 %}
 							<h4>Serie relacionada: {{ i['Series'] }}</h4>

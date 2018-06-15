@@ -72,12 +72,12 @@
 						<section id ="busqueda_personajes" class="inner">
 							<form action="/busqueda_personajes" method="post">
 								<center>
-								Indica el alias del personaje(o grupo de personajes): <input type="text" name="datos"><br>
+								Indica el nombre del personaje(o grupo de personajes): <input type="text" name="datos"><br>
+								</center>
+								<center>
+								Peticiones de ejemplo: Thor, Spider-man, Falcon...
 								</center>
 							</form>
-							<br>
-				  			<br>
-				  			<br>
 							{% for i in datos %}
 							<h1>Nombre: {{ i['Nombre'] }}</h1>
 							<h3>Biografía: {{ i['Biografia'] }}</h3>
@@ -87,9 +87,6 @@
 							<h1></h1><img src="{{ i['Imagen'] }}" alt=""/>
 							</center>
 							{% endfor %}
-							<br>
-							<br>
-							<br>
 						</section>
 				</div>
 
